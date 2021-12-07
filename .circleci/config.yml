@@ -35,7 +35,7 @@ workflows:
          # https://www.worldtimebuddy.com/est-to-utc-converter
          # Run every day at 01 AM GMT+7
          # in  UTC is 6 PM
-         cron: "* * * * *"
+         cron: "00 18 * * *"
          filters:
             branches:
               only:
