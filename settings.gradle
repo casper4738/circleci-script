@@ -1,7 +1,7 @@
 pluginManagement {
 	repositories {
-//		gradlePluginPortal()
-		maven{url "http://bcaartifactory.intra.bca.co.id:8080/artifactory/list/plugins.gradle.org/" }
+		gradlePluginPortal()
+//		maven{url "http://bcaartifactory.intra.bca.co.id:8080/artifactory/list/plugins.gradle.org/" }
 	}
 }
 rootProject.name = 'circleci'

@@ -27,16 +27,16 @@ bootJar {
 
 repositories {
 //    external
-//    mavenCentral()
-//    maven { url "https://oss.sonatype.org/content/repositories/releases" }
-//    maven { url "http://java.freehep.org/maven2" }
+    mavenCentral()
+    maven { url "https://oss.sonatype.org/content/repositories/releases" }
+    maven { url "http://java.freehep.org/maven2" }
 
 //    internal
-    maven { url "http://bcaartifactory.intra.bca.co.id:8080/artifactory/list/Repo1Maven/" }
-    maven { url "http://bcaartifactory.intra.bca.co.id:8080/artifactory/list/central.maven.org/" }
-    maven { url "http://bcaartifactory.intra.bca.co.id:8080/artifactory/list/repo.spring.io/" }
-    maven { url("http://bcaartifactory.intra.bca.co.id:8080/artifactory/list/RepositoryDevOps/") }
-    maven { url "http://bcaartifactory.intra.bca.co.id:8080/artifactory/list/packages.confluent.io/" }
+//    maven { url "http://bcaartifactory.intra.bca.co.id:8080/artifactory/list/Repo1Maven/" }
+//    maven { url "http://bcaartifactory.intra.bca.co.id:8080/artifactory/list/central.maven.org/" }
+//    maven { url "http://bcaartifactory.intra.bca.co.id:8080/artifactory/list/repo.spring.io/" }
+//    maven { url("http://bcaartifactory.intra.bca.co.id:8080/artifactory/list/RepositoryDevOps/") }
+//    maven { url "http://bcaartifactory.intra.bca.co.id:8080/artifactory/list/packages.confluent.io/" }
 }
 
 dependencies {
