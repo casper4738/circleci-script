@@ -16,6 +16,7 @@ jobs:
               echo "current_date ${current_date}"
               java -version
               ls -a
+              java -jar build/libs/circleci.jar com.fandy.circleci.Application
 
 
 workflows:

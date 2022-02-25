@@ -14,6 +14,6 @@ import java.util.concurrent.TimeUnit;
 public class DailyUpdate {
 
     public void run() {
-
+        System.out.println("DailyUpdate run");
     }
 }
