@@ -1,0 +1,3 @@
+spring.application.name: circleci
+
+spring.profiles.active: local
