@@ -16,7 +16,9 @@ jobs:
               echo "current_date ${current_date}"
               java -version
               ls -a
-              java -jar build/libs/circleci.jar com.fandy.circleci.Application
+              chmod +x gradlew
+              ./gradlew build
+              java -jar build/libs/circleci.jar
 
 
 workflows:
