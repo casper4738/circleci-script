@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 
+import java.util.Arrays;
+
 public class DailyUpdate implements ApplicationRunner {
     private static final Logger logger = LoggerFactory.getLogger(DailyUpdate.class);
 
@@ -14,7 +16,7 @@ public class DailyUpdate implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        logger.info("args=[{}]", args);
+        logger.info("args=[{}]", Arrays.toString(args.getSourceArgs()));
         dailyUpdate.run();
     }
 
