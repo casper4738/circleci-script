@@ -12,6 +12,10 @@ group = 'com.fandyadam'
 version = '1.0.0'
 def artifact = "circleci"
 
+springBoot {
+    mainClass = "com.fandyadam.Application"
+}
+
 bootJar {
     archiveFileName = artifact + '.' + archiveExtension.get()
     manifest {
