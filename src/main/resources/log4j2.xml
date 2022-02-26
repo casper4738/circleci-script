@@ -2,7 +2,7 @@
 <Configuration>
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} %l - %replace{%m}{\r?\n}{ }%n"/>
+            <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} %l - %msg"/>
         </Console>
     </Appenders>
     <Loggers>

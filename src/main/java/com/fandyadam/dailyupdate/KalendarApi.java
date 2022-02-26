@@ -17,9 +17,9 @@ public class KalendarApi {
     private final OkHttpClient httpClient;
     private final String codeApi;
 
-    public KalendarApi(OkHttpClient httpClient,
-                       @Value("${dailyupdate.kalendar.codeapi}") String codeApi) {
+    public KalendarApi(@Value("${dailyupdate.kalendar.codeapi}") String codeApi) {
         this.codeApi = codeApi;
+        
         this.httpClient = setUpClient();
     }
 
