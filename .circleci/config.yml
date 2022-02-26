@@ -4,41 +4,35 @@ version: 2.1
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
-  daily-update:
+ daily:
     docker:
-      - image: cimg/base:stable
+      - image: cimg/openjdk:11.0.13
     steps:
       - checkout
       - run:
-          name: "Daily Update"
+          name: build
           command: |
-              current_date=`date '+%d-%m-%Y'`
-              echo "current_date ${current_date}"
-              curl --location --request POST 'https://bcaoffice365.webhook.office.com/webhookb2/09a2a87a-c42a-43a7-a67f-39e9e02b0670@59daf140-4aee-4b77-80f4-4ea8bec86c2e/IncomingWebhook/5bfa4aca69994f45be965bfdbd13aad2/60f381ba-197c-43a6-a2a2-259f67ae0a8e' \
-              --header 'Content-Type: application/json' \
-              --data "{
-                    \"themeColor\": \"0076D7\",
-                    \"summary\": \"DAILY UPDATE - ${current_date}\",
-                    \"sections\": [
-                        {
-                            \"activityTitle\": \"DAILY UPDATE ${current_date}\",
-                            \"activitySubtitle\": \"Finish What You Start\"
-                        }
-                    ]
-                }"
+              java -version
+              chmod +x gradlew
+              ./gradlew build
+      - run:
+          name: execute daily update
+          command: |
+              java -jar build/libs/circleci.jar --dailyupdate=true
 
 
 workflows:
-  say-hello-workflow:triggers:
+  workflow:
     triggers:
       - schedule:
-         # https://www.worldtimebuddy.com/est-to-utc-converter
-         # Run every day at 01 AM GMT+7
-         # in  UTC is 6 PM
-         cron: "00 01 * * 1-5"
-         filters:
+          # https://www.worldtimebuddy.com/est-to-utc-converter
+          # Run every day at 01 AM GMT+7
+          # in  UTC is 6 PM
+          cron: "00 01 * * 1-5"
+          filters:
             branches:
               only:
                 - daily-update
+
     jobs:
-      - daily-update
+      - daily

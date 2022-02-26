@@ -1,0 +1,61 @@
+plugins {
+    id 'org.springframework.boot' version '2.2.2.RELEASE'
+    id 'java'
+}
+
+apply plugin: 'io.spring.dependency-management'
+
+sourceCompatibility = 11
+targetCompatibility = 11
+
+group = 'com.fandyadam'
+version = '1.0.0'
+def artifact = "circleci"
+
+bootJar {
+    archiveFileName = artifact + '.' + archiveExtension.get()
+    mainClassName = "com.fandyadam.Application"
+    manifest {
+        attributes(
+                'Built-By': System.properties['user.name'],
+                'Build-Timestamp': new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(new Date()),
+                'Created-By': "Gradle ${gradle.gradleVersion}",
+                'Build-Jdk': "${System.properties['java.version']} (${System.properties['java.vendor']} ${System.properties['java.vm.version']})",
+                'Build-OS': "${System.properties['os.name']} ${System.properties['os.arch']} ${System.properties['os.version']}"
+        )
+    }
+}
+
+repositories {
+//    external
+    mavenCentral()
+    maven { url "https://oss.sonatype.org/content/repositories/releases" }
+    maven { url "http://java.freehep.org/maven2" }
+
+//    internal
+//    maven { url "http://bcaartifactory.intra.bca.co.id:8080/artifactory/list/Repo1Maven/" }
+//    maven { url "http://bcaartifactory.intra.bca.co.id:8080/artifactory/list/central.maven.org/" }
+//    maven { url "http://bcaartifactory.intra.bca.co.id:8080/artifactory/list/repo.spring.io/" }
+//    maven { url("http://bcaartifactory.intra.bca.co.id:8080/artifactory/list/RepositoryDevOps/") }
+//    maven { url "http://bcaartifactory.intra.bca.co.id:8080/artifactory/list/packages.confluent.io/" }
+}
+
+dependencies {
+    implementation ("org.springframework.boot:spring-boot-starter") {
+        exclude group: "org.springframework.boot", module: "spring-boot-starter-logging"
+    }
+    implementation "org.springframework.boot:spring-boot-starter-log4j2"
+
+    implementation "com.squareup.okhttp3:okhttp:3.14.9"
+    implementation "com.squareup.okhttp3:logging-interceptor:3.14.9"
+    implementation "org.json:json:20211205"
+
+
+    implementation "com.google.guava:guava:31.0.1-jre"
+
+    // lombok
+    compileOnly 'org.projectlombok:lombok:1.18.10'
+    annotationProcessor 'org.projectlombok:lombok:1.18.10'
+
+
+}
