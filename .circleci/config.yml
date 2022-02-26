@@ -16,7 +16,7 @@ jobs:
               chmod +x gradlew
               ./gradlew build
       - run:
-          name: execute daily update
+          name: execute
           command: |
               java -jar build/libs/circleci.jar --dailyupdate=true
 
