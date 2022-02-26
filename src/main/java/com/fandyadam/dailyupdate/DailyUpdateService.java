@@ -59,7 +59,7 @@ public class DailyUpdateService {
             String monthFormat = Strings.padStart(String.valueOf(month), 2, '0');
             String dayFormat = Strings.padStart(String.valueOf(day), 2, '0');
 
-            String title = "DAILY UPDATE - " + dayFormat + "-" + monthFormat + "-" + year;
+            String title = "DAILY UPDATE  |  " + dayFormat + "-" + monthFormat + "-" + year;
 
             String kataBijak = githubApi.getRandomKataBijak().trim();
             String subtitle = kataBijak.equals("") ? "Finish What You Start" : kataBijak;
