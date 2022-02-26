@@ -1,3 +1,6 @@
 spring.application.name: circleci
 
 spring.profiles.active: local
+
+# daily update
+dailyupdate.kalendar.codeapi: APIGnkzE3esNM
