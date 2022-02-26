@@ -2,6 +2,8 @@ package com.fandyadam.dailyupdate;
 
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
+
 @Component
 public class DailyUpdateImpl {
 
@@ -14,7 +16,10 @@ public class DailyUpdateImpl {
     public void run() {
         System.out.println("DailyUpdate run");
         try {
-            kalendarApi.getHoliday(2022, 2);
+            kalendarApi.getHoliday(
+                LocalDate.now().getYear(),
+                LocalDate.now().getMonthValue(),
+                LocalDate.now().getDayOfMonth());
         }catch (Exception e) {
             System.err.println(e);
         }
