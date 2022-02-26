@@ -4,6 +4,7 @@ import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,7 @@ public class KalendarApi {
 
     public KalendarApi(@Value("${dailyupdate.kalendar.codeapi}") String codeApi) {
         this.codeApi = codeApi;
-        
+
         this.httpClient = setUpClient();
     }
 
@@ -33,15 +34,28 @@ public class KalendarApi {
             .build();
     }
 
-    public void getHoliday(int year, int month) throws IOException {
+    public void getHoliday(int year, int month, int day) throws IOException {
         Request request = new Request.Builder().url("https://kalenderindonesia.com/api/" + codeApi + "/libur/masehi/" + year + "/" + month)
             .build();
 
         Response response = httpClient.newCall(request).execute();
         String responseString = response.body().string();
-        System.out.println("FANN : " + responseString);
         JSONObject jsonObject = new JSONObject(responseString);
         System.out.println("FANN : " + jsonObject);
+        JSONObject objectData = jsonObject.getJSONObject("data");
+        if (month == objectData.getInt("month")) {
+            return;
+        }
+
+        JSONArray objectDataHolidays = objectData.getJSONObject("holiday").getJSONArray("data");
+        System.out.println("objectDataHolidays : " + objectDataHolidays);
+        for (int i = 0; i < objectDataHolidays.length(); i++) {
+            JSONObject holiday = objectDataHolidays.getJSONObject(i);
+            System.out.println("\tholiday : " + holiday);
+            if (day == holiday.getInt("day")) {
+                return;
+            }
+        }
 
     }
 }
