@@ -17,10 +17,15 @@ public class DailyUpdate implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
         logger.info("args=[{}] " + Arrays.toString(args.getSourceArgs()));
-        dailyUpdate.run(
-            args.getOptionValues("test").size() > 0 ?
-                Boolean.valueOf(args.getOptionValues("test").get(0)) : false
-        );
+
+        boolean testMode = false;
+
+        if(args.getOptionNames().contains("test")) {
+            testMode = args.getOptionValues("test").size() > 0 ?
+                Boolean.valueOf(args.getOptionValues("test").get(0)) : false;
+        }
+
+        dailyUpdate.run(testMode);
     }
 
 }

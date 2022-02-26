@@ -38,6 +38,7 @@ public class DailyUpdateService {
         boolean webhookSuccess = false;
 
         logger.info("==== DailyUpdate start ====");
+        logger.info("DailyUpdate run mode test : " + testMode);
         logger.info("DailyUpdate param year    : " + year);
         logger.info("DailyUpdate param month   : " + month);
         logger.info("DailyUpdate param day     : " + day);
