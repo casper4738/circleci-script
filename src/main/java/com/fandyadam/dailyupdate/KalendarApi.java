@@ -43,7 +43,7 @@ public class KalendarApi {
         JSONObject jsonObject = new JSONObject(responseString);
         System.out.println("FANN : " + jsonObject);
         JSONObject objectData = jsonObject.getJSONObject("data");
-        if (month == objectData.getInt("month")) {
+        if (month != objectData.getInt("month")) {
             return;
         }
 
