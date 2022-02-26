@@ -19,7 +19,7 @@ public class DailyUpdateImpl {
             kalendarApi.getHoliday(
                 LocalDate.now().getYear(),
                 LocalDate.now().getMonthValue(),
-                LocalDate.now().getDayOfMonth());
+                1);
         }catch (Exception e) {
             System.err.println(e);
         }
