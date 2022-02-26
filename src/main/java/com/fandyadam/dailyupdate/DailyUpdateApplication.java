@@ -10,10 +10,10 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan({"com.fandyadam"})
 public class DailyUpdateApplication implements CommandLineRunner {
 
-    private DailyUpdateImpl dailyUpdate;
+    private DailyUpdate dailyUpdate;
 
     @Autowired
-    public DailyUpdateApplication(DailyUpdateImpl dailyUpdate) {
+    public DailyUpdateApplication(DailyUpdate dailyUpdate) {
         this.dailyUpdate = dailyUpdate;
     }
 
