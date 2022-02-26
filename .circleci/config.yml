@@ -18,7 +18,7 @@ jobs:
               ls -a
               chmod +x gradlew
               ./gradlew build
-              java -jar build/libs/circleci.jar com.fandyadam.dailyupdate.DailyUpdateApplication
+              java -jar build/libs/circleci.jar --dailyupdate=true
 
 
 workflows:
