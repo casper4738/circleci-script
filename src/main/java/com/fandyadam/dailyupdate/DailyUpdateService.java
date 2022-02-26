@@ -1,5 +1,6 @@
 package com.fandyadam.dailyupdate;
 
+import com.google.common.base.Strings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -13,13 +14,16 @@ public class DailyUpdateService {
 
     private Office365Api office365Api;
     private KalendarApi kalendarApi;
+    private GithubApi githubApi;
 
     public DailyUpdateService(
         Office365Api office365Api,
-        KalendarApi kalendarApi
+        KalendarApi kalendarApi,
+        GithubApi githubApi
     ) {
         this.office365Api = office365Api;
         this.kalendarApi = kalendarApi;
+        this.githubApi = githubApi;
     }
 
     public void run(boolean testMode) {
@@ -52,7 +56,18 @@ public class DailyUpdateService {
             holiday = kalendarApi.isHoliday(year, month, day);
 
             logger.info("call service webhookDaily");
-            webhookSuccess = office365Api.webhookDaily(year, month, day, testMode);
+            String monthFormat = Strings.padStart(String.valueOf(month), 2, '0');
+            String dayFormat = Strings.padStart(String.valueOf(day), 2, '0');
+
+            String title = "DAILY UPDATE - " + dayFormat + "-" + monthFormat + "-" + year;
+
+            String kataBijak = githubApi.getRandomKataBijak().trim();
+            String subtitle = kataBijak.equals("") ? "Finish What You Start" : kataBijak;
+
+            webhookSuccess = office365Api.webhookDaily(
+                title,
+                subtitle,
+                testMode);
         } catch (Exception e) {
             logger.error("error", e);
         }

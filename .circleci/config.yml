@@ -18,7 +18,7 @@ jobs:
       - run:
           name: test
           command: |
-              java -jar build/libs/circleci.jar --dailyupdate=true
+              java -jar build/libs/circleci.jar --dailyupdate=true --test=true
 
 
 workflows:

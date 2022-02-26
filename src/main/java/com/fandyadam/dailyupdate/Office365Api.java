@@ -38,21 +38,18 @@ public class Office365Api {
         this.httpClient = new HttpClient().getClient();
     }
 
-    public boolean webhookDaily(int year, int month, int day) throws IOException {
-        return webhookDaily(year, month, day, false);
+    public boolean webhookDaily(String title, String subtitle) throws IOException {
+        return webhookDaily(title, subtitle, false);
     }
 
-    public boolean webhookDaily(int year, int month, int day, boolean groupTest) throws IOException {
-        String monthFormat = Strings.padStart(String.valueOf(month), 2, '0');
-        String dayFormat = Strings.padStart(String.valueOf(day), 2, '0');
-
+    public boolean webhookDaily(String title, String subtitle, boolean groupTest) throws IOException {
         JSONObject objectSections = new JSONObject();
-        objectSections.put("activityTitle", "DAILY UPDATE - " + dayFormat + "-" + monthFormat + "-" + year);
-        objectSections.put("activitySubtitle", "Finish What You Start");
+        objectSections.put("activityTitle", title);
+        objectSections.put("activitySubtitle", subtitle);
 
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("themeColor", "0076D7");
-        jsonObject.put("summary", "DAILY UPDATE - " + dayFormat + "-" + monthFormat + "-" + year);
+        jsonObject.put("summary", title);
         jsonObject.put("sections", new JSONObject[]{objectSections});
 
         Request request = new Request.Builder()
