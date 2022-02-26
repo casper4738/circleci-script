@@ -22,16 +22,17 @@ public class DailyUpdateService {
         this.kalendarApi = kalendarApi;
     }
 
-    public void run() {
+    public void run(boolean testMode) {
         logger.info("DailyUpdate run default");
 
         run(LocalDate.now().getYear(),
             LocalDate.now().getMonthValue(),
-            LocalDate.now().getDayOfMonth()
+            LocalDate.now().getDayOfMonth(),
+            testMode
         );
     }
 
-    public void run(int year, int month, int day) {
+    public void run(int year, int month, int day, boolean testMode) {
 
         boolean holiday = false;
         boolean webhookSuccess = false;
@@ -50,7 +51,7 @@ public class DailyUpdateService {
             holiday = kalendarApi.isHoliday(year, month, day);
 
             logger.info("call service webhookDaily");
-            webhookSuccess = office365Api.webhookDaily(year, month, day, true);
+            webhookSuccess = office365Api.webhookDaily(year, month, day, testMode);
         } catch (Exception e) {
             logger.error("error", e);
         }

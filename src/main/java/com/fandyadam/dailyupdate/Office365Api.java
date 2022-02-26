@@ -1,8 +1,11 @@
 package com.fandyadam.dailyupdate;
 
 import com.fandyadam.util.HttpClient;
-import okhttp3.*;
-import okhttp3.logging.HttpLoggingInterceptor;
+import com.google.common.base.Strings;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,7 +13,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 
 import static com.fandyadam.util.HttpClient.JSON;
 
@@ -41,13 +43,16 @@ public class Office365Api {
     }
 
     public boolean webhookDaily(int year, int month, int day, boolean groupTest) throws IOException {
+        String monthFormat = Strings.padStart(String.valueOf(month), 2, '0');
+        String dayFormat = Strings.padStart(String.valueOf(day), 2, '0');
+
         JSONObject objectSections = new JSONObject();
-        objectSections.put("activityTitle", "DAILY UPDATE - " + day + "-" + month + "-" + year);
+        objectSections.put("activityTitle", "DAILY UPDATE - " + dayFormat + "-" + monthFormat + "-" + year);
         objectSections.put("activitySubtitle", "Finish What You Start");
 
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("themeColor", "0076D7");
-        jsonObject.put("summary", "DAILY UPDATE - " + day + "-" + month + "-" + year);
+        jsonObject.put("summary", "DAILY UPDATE - " + dayFormat + "-" + monthFormat + "-" + year);
         jsonObject.put("sections", new JSONObject[]{objectSections});
 
         Request request = new Request.Builder()
