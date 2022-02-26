@@ -1,16 +1,14 @@
-package com.fandy.youtube;
+package com.fandyadam;
 
-import com.fandy.circleci.DailyUpdate;
+import com.fandyadam.circleci.DailyUpdate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.annotation.ComponentScan;
 
-import java.util.Arrays;
-
 @SpringBootApplication
-@ComponentScan({"com.fandy"})
+@ComponentScan({"com.fandyadam"})
 public class Application implements CommandLineRunner {
 
     private DailyUpdate dailyUpdate;

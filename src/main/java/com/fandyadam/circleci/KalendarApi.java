@@ -1,4 +1,4 @@
-package com.fandy.circleci;
+package com.fandyadam.circleci;
 
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
