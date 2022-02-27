@@ -31,6 +31,8 @@ jobs:
               ls -a
               git clone -b "master" --single-branch "https://github.com/casper4738/circleci-script"
               ls -a
+              cd "circleci-script"
+              ls -a
 
 
 workflows:
