@@ -20,8 +20,21 @@ jobs:
           command: |
               java -jar build/libs/circleci.jar --dailyupdate=true --test=true
 
+ test:
+    docker:
+      - image: cimg/openjdk:11.0.13
+    steps:
+      - run:
+          name: test
+          command: |
+              echo "HIII"
+              ls -a
+              git clone -b "master" --single-branch "https://github.com/casper4738/circleci-script"
+              ls -a
+
 
 workflows:
   workflow:
     jobs:
-      - daily
+      # - daily
+      - test
