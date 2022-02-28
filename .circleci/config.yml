@@ -10,15 +10,23 @@ jobs:
     steps:
       - checkout
       - run:
+          name: checkout code
+          command: |
+              git clone "https://github.com/casper4738/circleci-script.git"  --depth 1  --branch "v3.0" --single-branch
+
+      - run:
           name: build
           command: |
               java -version
+              cd "circleci-script/task-runner"
               chmod +x gradlew
               ./gradlew build
+
       - run:
           name: execute
           command: |
-              java -jar build/libs/circleci.jar --dailyupdate=true
+              cd "circleci-script/task-runner"
+              java -jar "build/libs/circleci.jar" --dailyupdate=true
 
 
 workflows:
