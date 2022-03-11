@@ -1,4 +1,4 @@
-package com.fandyadam.dailyupdate;
+package com.fandyadam.dailyupdate.office;
 
 import com.fandyadam.util.HttpClient;
 import com.google.common.base.Strings;

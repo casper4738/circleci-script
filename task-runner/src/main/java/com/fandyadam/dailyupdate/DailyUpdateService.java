@@ -1,5 +1,9 @@
 package com.fandyadam.dailyupdate;
 
+import com.fandyadam.dailyupdate.calendar.CalendarIndonesiaApi;
+import com.fandyadam.dailyupdate.calendar.CalendarVercelApi;
+import com.fandyadam.dailyupdate.katabijak.KataBijakApi;
+import com.fandyadam.dailyupdate.office.Office365Api;
 import com.google.common.base.Strings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,17 +17,20 @@ public class DailyUpdateService {
     private static final Logger logger = LoggerFactory.getLogger(DailyUpdateService.class);
 
     private Office365Api office365Api;
-    private KalendarApi kalendarApi;
-    private GithubApi githubApi;
+    private CalendarIndonesiaApi calendarIndonesiaApi;
+    private CalendarVercelApi calendarVercelApi;
+    private KataBijakApi kataBijakApi;
 
     public DailyUpdateService(
         Office365Api office365Api,
-        KalendarApi kalendarApi,
-        GithubApi githubApi
+        CalendarIndonesiaApi calendarIndonesiaApi,
+        CalendarVercelApi calendarVercelApi,
+        KataBijakApi kataBijakApi
     ) {
         this.office365Api = office365Api;
-        this.kalendarApi = kalendarApi;
-        this.githubApi = githubApi;
+        this.calendarIndonesiaApi = calendarIndonesiaApi;
+        this.calendarVercelApi = calendarVercelApi;
+        this.kataBijakApi = kataBijakApi;
     }
 
     public void run(boolean testMode) {
@@ -53,11 +60,15 @@ public class DailyUpdateService {
 
         try {
             logger.info("call service holiday");
-            holiday = kalendarApi.isHoliday(year, month, day);
+            try {
+                holiday = calendarIndonesiaApi.isHoliday(year, month, day);
+            } catch (Exception ex) {
+                holiday = calendarVercelApi.isHoliday(year, month, day);
+            }
 
-            if(!holiday) {
+            if (!holiday) {
                 logger.info("call service kata bijak");
-                String kataBijak = githubApi.getRandomKataBijak().trim();
+                String kataBijak = kataBijakApi.getRandomKataBijak().trim();
 
                 logger.info("call service webhookDaily");
                 String monthFormat = Strings.padStart(String.valueOf(month), 2, '0');

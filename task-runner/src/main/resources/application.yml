@@ -2,9 +2,12 @@ spring.application.name: circleci
 
 spring.profiles.active: local
 
-# kalendar
-kalendar.url: https://kalenderindonesia.com/api
-kalendar.codeapi: APIGnkzE3esNM
+# kalendar api - opsi 1
+calendar.url.kalenderindonesia: https://kalenderindonesia.com/api
+calendar.codeapi.kalenderindonesia: APIGnkzE3esNM
+
+# kalendar api - opsi 2
+calendar.url.vercel: https://api-harilibur.vercel.app/api
 
 
 # office365

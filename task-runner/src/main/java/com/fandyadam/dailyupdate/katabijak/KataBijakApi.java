@@ -1,4 +1,4 @@
-package com.fandyadam.dailyupdate;
+package com.fandyadam.dailyupdate.katabijak;
 
 import com.fandyadam.util.HttpClient;
 import okhttp3.OkHttpClient;
@@ -13,13 +13,13 @@ import java.util.List;
 import java.util.Random;
 
 @Service
-public class GithubApi {
+public class KataBijakApi {
 
     private final OkHttpClient httpClient;
     private final String githubRawUrl;
     private final String githubKatabijak;
 
-    public GithubApi(
+    public KataBijakApi(
         @Value("${github.raw.url}") String githubRawUrl,
         @Value("${github.katabijak}") String githubKatabijak
     ) {

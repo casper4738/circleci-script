@@ -1,4 +1,4 @@
-package com.fandyadam.dailyupdate;
+package com.fandyadam.dailyupdate.calendar;
 
 import com.fandyadam.util.HttpClient;
 import okhttp3.OkHttpClient;
@@ -12,25 +12,25 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 
 @Service
-public class KalendarApi {
+public class CalendarIndonesiaApi {
 
     private final OkHttpClient httpClient;
-    private final String kalendarUrl;
-    private final String kalendarCodeApi;
+    private final String calendarUrl;
+    private final String calendarCodeApi;
 
-    public KalendarApi(
-        @Value("${kalendar.url}") String kalendarUrl,
-        @Value("${kalendar.codeapi}") String codeApi
+    public CalendarIndonesiaApi(
+        @Value("${calendar.url.kalenderindonesia}") String calendarUrl,
+        @Value("${calendar.codeapi.kalenderindonesia}") String codeApi
     ) {
-        this.kalendarUrl = kalendarUrl;
-        this.kalendarCodeApi = codeApi;
+        this.calendarUrl = calendarUrl;
+        this.calendarCodeApi = codeApi;
 
         this.httpClient = new HttpClient().getClient();
     }
 
     public boolean isHoliday(int year, int month, int day) throws IOException {
         Request request = new Request.Builder()
-            .url(kalendarUrl + "/" + kalendarCodeApi + "/libur/masehi/" + year + "/" + month)
+            .url(calendarUrl + "/" + calendarCodeApi + "/libur/masehi/" + year + "/" + month)
             .build();
 
         Response response = httpClient.newCall(request).execute();
