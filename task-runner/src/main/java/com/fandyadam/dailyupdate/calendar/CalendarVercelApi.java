@@ -25,7 +25,7 @@ public class CalendarVercelApi {
 
     public boolean isHoliday(int year, int month, int day) throws IOException {
         Request request = new Request.Builder()
-            .url(calendarUrl + "?" + "api?month=" + month + "&year=" + year)
+            .url(calendarUrl + "?month=" + month + "&year=" + year)
             .build();
 
         Response response = httpClient.newCall(request).execute();
