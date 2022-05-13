@@ -13,5 +13,30 @@
       "holiday_date":"2022-06-01",
       "holiday_name":"Hari Lahir Pancasila",
       "is_national_holiday":true
+   },
+   {
+      "holiday_date":"2022-07-09",
+      "holiday_name":"Hari Raya Idul Adha 1443 Hijriah",
+      "is_national_holiday":true
+   },
+   {
+      "holiday_date":"2022-07-30",
+      "holiday_name":"Tahun Baru Islam",
+      "is_national_holiday":true
+   },
+   {
+      "holiday_date":"2022-08-17",
+      "holiday_name":"Hari Kemerdekaan",
+      "is_national_holiday":true
+   },
+   {
+      "holiday_date":"2022-10-08",
+      "holiday_name":"Maulid Nabi Muhammad SAW",
+      "is_national_holiday":true
+   },
+   {
+      "holiday_date":"2022-12-25",
+      "holiday_name":"Hari Natal",
+      "is_national_holiday":true
    }
 ]
