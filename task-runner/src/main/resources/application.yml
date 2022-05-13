@@ -18,3 +18,4 @@ incomingwebhook.group.dailyupdate : 09a2a87a-c42a-43a7-a67f-39e9e02b0670@59daf14
 # github
 github.raw.url: https://raw.githubusercontent.com
 github.katabijak: casper4738/circleci-script/master/notes/kata-bijak-developer.json
+github.holidaydate: casper4738/circleci-script/master/notes/holiday-date.json

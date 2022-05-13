@@ -2,6 +2,7 @@ package com.fandyadam.dailyupdate;
 
 import com.fandyadam.dailyupdate.calendar.CalendarIndonesiaApi;
 import com.fandyadam.dailyupdate.calendar.CalendarVercelApi;
+import com.fandyadam.dailyupdate.calendar.CustomHolidayApi;
 import com.fandyadam.dailyupdate.katabijak.KataBijakApi;
 import com.fandyadam.dailyupdate.office.Office365Api;
 import com.google.common.base.Strings;
@@ -19,17 +20,20 @@ public class DailyUpdateService {
     private Office365Api office365Api;
     private CalendarIndonesiaApi calendarIndonesiaApi;
     private CalendarVercelApi calendarVercelApi;
+    private CustomHolidayApi customHolidayApi;
     private KataBijakApi kataBijakApi;
 
     public DailyUpdateService(
         Office365Api office365Api,
         CalendarIndonesiaApi calendarIndonesiaApi,
         CalendarVercelApi calendarVercelApi,
+        CustomHolidayApi customHolidayApi,
         KataBijakApi kataBijakApi
     ) {
         this.office365Api = office365Api;
         this.calendarIndonesiaApi = calendarIndonesiaApi;
         this.calendarVercelApi = calendarVercelApi;
+        this.customHolidayApi = customHolidayApi;
         this.kataBijakApi = kataBijakApi;
     }
 
@@ -61,9 +65,16 @@ public class DailyUpdateService {
         try {
             logger.info("call service holiday");
             try {
-                holiday = calendarIndonesiaApi.isHoliday(year, month, day);
+                holiday = customHolidayApi.isHoliday(year, month, day);
             } catch (Exception ex) {
-                holiday = calendarVercelApi.isHoliday(year, month, day);
+            }
+
+            if (!holiday) {
+                try {
+                    holiday = calendarIndonesiaApi.isHoliday(year, month, day);
+                } catch (Exception ex) {
+                    holiday = calendarVercelApi.isHoliday(year, month, day);
+                }
             }
 
             if (!holiday) {
