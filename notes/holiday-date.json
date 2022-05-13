@@ -1,0 +1,17 @@
+[
+   {
+      "holiday_date":"2022-05-16",
+      "holiday_name":"Hari Raya Waisak",
+      "is_national_holiday":true
+   },
+   {
+      "holiday_date":"2022-05-26",
+      "holiday_name":"Kenaikan Isa Almasih",
+      "is_national_holiday":true
+   },
+   {
+      "holiday_date":"2022-06-01",
+      "holiday_name":"Hari Lahir Pancasila",
+      "is_national_holiday":true
+   }
+]
