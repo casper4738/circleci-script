@@ -66,14 +66,20 @@ public class DailyUpdateService {
             logger.info("call service holiday");
             try {
                 holiday = customHolidayApi.isHoliday(year, month, day);
-            } catch (Exception ex) {
+            } catch (java.net.UnknownHostException | Exception ex) {
+                logger.error("customHolidayApi error", ex);
             }
 
             if (!holiday) {
                 try {
                     holiday = calendarIndonesiaApi.isHoliday(year, month, day);
-                } catch (Exception ex) {
-                    holiday = calendarVercelApi.isHoliday(year, month, day);
+                } catch (java.net.UnknownHostException | Exception exCalIndo) {
+                    logger.error("calendarIndonesiaApi error", exCalIndo);
+                    try {
+                        holiday = calendarVercelApi.isHoliday(year, month, day);
+                    } catch (java.net.UnknownHostException | Exception exVelcel) {
+                        logger.error("calendarVercelApi error", exVelcel);
+                    }
                 }
             }
 
