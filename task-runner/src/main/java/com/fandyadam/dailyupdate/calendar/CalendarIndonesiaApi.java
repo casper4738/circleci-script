@@ -41,8 +41,17 @@ public class CalendarIndonesiaApi {
             return false;
         }
 
-        return isHoliday(day, objectData.getJSONObject("holiday").getJSONArray("data"))
-            || isHoliday(day, objectData.getJSONObject("leave").getJSONArray("data"));
+        boolean fieldHoliday = false;
+        try {
+            fieldHoliday = isHoliday(day, objectData.getJSONObject("holiday").getJSONArray("data"));
+        } catch (Exception ex) { }
+
+        boolean fieldLeave = false;
+        try {
+            fieldLeave = isHoliday(day, objectData.getJSONObject("leave").getJSONArray("data"));
+        }catch (Exception ex) { }
+        
+        return fieldHoliday || fieldLeave;
     }
 
     private boolean isHoliday(int day, JSONArray objectDataHolidays) {
