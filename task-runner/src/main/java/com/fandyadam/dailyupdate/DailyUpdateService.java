@@ -73,11 +73,11 @@ public class DailyUpdateService {
             if (!holiday) {
                 try {
                     holiday = calendarIndonesiaApi.isHoliday(year, month, day);
-                } catch (java.net.UnknownHostException | Exception exCalIndo) {
+                } catch (Exception exCalIndo) {
                     logger.error("calendarIndonesiaApi error", exCalIndo);
                     try {
                         holiday = calendarVercelApi.isHoliday(year, month, day);
-                    } catch (java.net.UnknownHostException | Exception exVelcel) {
+                    } catch (Exception exVelcel) {
                         logger.error("calendarVercelApi error", exVelcel);
                     }
                 }
