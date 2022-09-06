@@ -66,7 +66,7 @@ public class DailyUpdateService {
             logger.info("call service holiday");
             try {
                 holiday = customHolidayApi.isHoliday(year, month, day);
-            } catch (java.net.UnknownHostException | Exception ex) {
+            } catch (Exception ex) {
                 logger.error("customHolidayApi error", ex);
             }
 
