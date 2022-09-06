@@ -12,7 +12,7 @@ jobs:
       - run:
           name: checkout code
           command: |
-              git clone "https://github.com/casper4738/circleci-script.git"  --depth 1  --branch "vTaskRunner-1.3.0" --single-branch
+              git clone "https://github.com/casper4738/circleci-script.git"  --depth 1  --branch "vTaskRunner-1.3.1" --single-branch
 
       - run:
           name: build
